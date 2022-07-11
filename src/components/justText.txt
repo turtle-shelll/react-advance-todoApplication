@@ -1,0 +1,180 @@
+import React, { useState } from "react";
+// import { Link } from "react-router-dom";
+import { Input, Button, Select, Textarea, Form, FormGroup, Table } from "antd";
+import "antd/dist/antd.css";
+import CreateToDo from "./createToDo";
+// import { ProTable } from "@ant-design/pro-components";
+// import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
+import {
+  PoweroffOutlined,
+  UserOutlined,
+  CheckCircleOutlined,
+  DeleteOutlined,
+  EditOutlined,
+  DeleteFilled,
+  EditFilled,
+} from "@ant-design/icons";
+
+export default function AntTable() {
+  const [dataArray, setDataArray] = useState([]);
+  console.log("dataArray==*", dataArray);
+  // console.log("ProTable==*", <ProTable />);
+
+  const Coulmun = [
+    {
+      title: "status",
+      dataIndex: "status",
+      key: "key",
+      // render: () => <CheckCircleOutlined />,
+      // render: () => <MoreVertOutlinedIcon />,
+    },
+    {
+      title: "createAt",
+      dataIndex: "createAt",
+      key: "key",
+      // style: "background-color: #f5f5f5;",
+      render: (createAt) => {
+        return <div>{`${createAt.day}/${createAt.hr}:${createAt.min}`}</div>;
+      },
+    },
+    {
+      title: "description",
+      dataIndex: "description",
+      key: "key",
+      style: "background-color: #f5f5f5;",
+      // render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "title",
+      dataIndex: "title",
+      key: "key",
+    },
+    {
+      title: "tag",
+      dataIndex: "tag",
+      key: "key",
+    },
+    {
+      title: "action",
+      dataIndex: "status",
+      key: "key",
+      // render: () => <CheckCircleOutlined />,
+      render: () => (
+        <div>
+          <EditFilled /> <DeleteFilled />
+        </div>
+      ),
+    },
+  ];
+
+  const [isLoading, setIsLoading] = useState(false);
+  const fruits = ["apple", "mango", "orange", "pinapple", "strawberry"];
+  const doFunction = () => {
+    console.log("its working button");
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  // function onBtnClick(e) {
+  // console.log("onFinish called", e);
+  // const currentTime = new Date().getTime();
+  // const miliSeconds = Math.floor(currentTime / 1000);
+  // const seconds = miliSeconds % 60;
+  // const minutes = Math.floor(miliSeconds / 60);
+  // const hours = Math.floor(minutes / 60);
+  // const days = Math.floor(hours / 24);
+  // const months = Math.floor(days / 30);
+  // const years = Math.floor(months / 12);
+  // const day = new Date.getDate();
+  // const year = day * 365;
+  // const createdTime = currentTime;
+  //   const day = new Date().getDate();
+  //   const minute = new Date().getMinutes();
+  //   const hour = new Date().getHours();
+  //   // console.log("day", day);
+  //   e.createAt = { day: day, hr: hour, min: minute };
+  //   e.status = "open";
+  //   e.key = Math.round(Math.random() * 10000);
+  //   setDataArray((preValue) => {
+  //     return [...preValue, e];
+  //   });
+  // }
+  return (
+    <div>
+      <CreateToDo />
+      {/* <Input.Search
+        style={{ width: 200 }}
+        type={"text"}
+        allowClear
+        prefix={<UserOutlined />}
+        placeholder="Enter your username"
+        width={"400px"}
+      />
+      <Select
+        placeholder="Select Fruits"
+        style={{ width: 300, textAlign: "center" }}
+        maxTagCount={2}
+        mode="multiple"
+      >
+        {fruits.map((fruit, index) => {
+          return (
+            <Select.Option key={index} value={fruit}>
+              {fruit}
+            </Select.Option>
+          );
+        })}
+      </Select>
+      <Button
+        type="primary"
+        icon={<PoweroffOutlined />}
+        onClick={doFunction}
+        loading={isLoading}
+      >
+        My button
+      </Button> */}
+      {/* <Form
+        onFinish={onBtnClick}
+        style={{
+          width: "600px",
+          margin: "auto",
+        }}
+      >
+        <Form.Item label="title" name={"title"}>
+          <Input
+            placeholder="Enter title"
+            required
+            // prefix={<UserOutlined />}
+          />
+        </Form.Item>
+        <Form.Item label="description" name={"description"}>
+          <Input
+            required
+            placeholder="Enter description"
+            // prefix={<MailOutlined />}
+          />
+        </Form.Item>
+        <Form.Item label="tag" name={"tag"}>
+          <Input
+            required
+            placeholder="Enter Tag"
+            // prefix={<LockOutlined />}
+          />
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type="primary"
+            block
+            htmlType="submit"
+            name="login"
+            value="Login"
+          >
+            Log in
+          </Button>
+        </Form.Item>
+      </Form> */}
+      <Table dataSource={dataArray} columns={Coulmun}></Table>
+    </div>
+  );
+}
